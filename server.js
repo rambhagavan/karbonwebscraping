@@ -5,6 +5,7 @@ const { createObjectCsvWriter } = require('csv-writer'); // Import createObjectC
 const cors=require("cors");
 const fs = require('fs');
 const csvParser = require('csv-parser');
+const { time } = require('console');
 
 const app = express();
 const upload = multer({ dest: 'uploads/' });
@@ -63,6 +64,7 @@ async function getLinkedInUrl(companyName, xdetail) {
 let data = []; // Define data array
 
 app.post('/scrape', upload.single('file'), async (req, res) => {
+    console.log("Hello");
     const results = await new Promise((resolve, reject) => {
         const results = [];
         fs.createReadStream(req.file.path)
